@@ -182,15 +182,15 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.detailsLabelText = nil;
 		self.opacity = 0.8f;
         self.color = nil;
-		self.labelFont = [UIFont boldSystemFontOfSize:kLabelFontSize];
-        self.labelColor = [UIColor whiteColor];
-		self.detailsLabelFont = [UIFont boldSystemFontOfSize:kDetailsLabelFontSize];
-        self.detailsLabelColor = [UIColor whiteColor];
+		self.labelFont = [UIFont fontWithName:@"AvenirNext-DemiBold" size:kLabelFontSize];
+        self.labelColor = [UIColor colorWithRed:0.184 green:0.208 blue:0.216 alpha:1];
+		self.detailsLabelFont = [UIFont fontWithName:@"AvenirNext-Medium" size:kDetailsLabelFontSize];
+        self.detailsLabelColor = [UIColor colorWithRed:0.184 green:0.208 blue:0.216 alpha:1];
 		self.xOffset = 0.0f;
 		self.yOffset = 0.0f;
-		self.dimBackground = NO;
+		self.dimBackground = YES;
 		self.margin = 20.0f;
-        self.cornerRadius = 10.0f;
+        self.cornerRadius = 4.0f;
 		self.graceTime = 0.0f;
 		self.minShowTime = 0.0f;
 		self.removeFromSuperViewOnHide = NO;
@@ -202,6 +202,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		// Transparent background
 		self.opaque = NO;
 		self.backgroundColor = [UIColor clearColor];
+        
 		// Make it invisible for now
 		self.alpha = 0.0f;
 		
@@ -484,6 +485,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[indicator removeFromSuperview];
 		self.indicator = MB_AUTORELEASE([[UIActivityIndicatorView alloc]
 										 initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]);
+        UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)self.indicator;
+        activityIndicator.color = [UIColor colorWithRed:0 green:134.0/256.0f blue:179.0/256.0f alpha:1];
 		[(UIActivityIndicatorView *)indicator startAnimating];
 		[self addSubview:indicator];
 	}
@@ -632,7 +635,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
     if (self.color) {
         CGContextSetFillColorWithColor(context, self.color.CGColor);
     } else {
-        CGContextSetGrayFillColor(context, 0.0f, self.opacity);
+        CGContextSetFillColorWithColor(context, [[UIColor alloc] initWithRed:245.0/256.0 green:245.0/256.0 blue:245.0/256.0 alpha:1].CGColor);
     }
 
 	
@@ -777,8 +780,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.opaque = NO;
 		_progress = 0.f;
 		_annular = NO;
-		_progressTintColor = [[UIColor alloc] initWithWhite:1.f alpha:1.f];
-		_backgroundTintColor = [[UIColor alloc] initWithWhite:1.f alpha:.1f];
+        _progressTintColor = [[UIColor alloc] initWithRed:0 green:134.0/256.0 blue:179.0/256.0 alpha:1];
+		_backgroundTintColor = [[UIColor alloc] initWithRed:0 green:134.0/256.0 blue:179.0/256.0 alpha:1];
 		[self registerForKVO];
 	}
 	return self;
@@ -879,8 +882,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
     self = [super initWithFrame:frame];
     if (self) {
 		_progress = 0.f;
-		_lineColor = [UIColor whiteColor];
-		_progressColor = [UIColor whiteColor];
+		_lineColor = [[UIColor alloc] initWithRed:0 green:134.0/256.0 blue:179.0/256.0 alpha:1];
+		_progressColor = [[UIColor alloc] initWithRed:0 green:134.0/256.0 blue:179.0/256.0 alpha:1];
 		_progressRemainingColor = [UIColor clearColor];
 		self.backgroundColor = [UIColor clearColor];
 		self.opaque = NO;
